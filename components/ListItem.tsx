@@ -13,7 +13,9 @@ const ListItem = ({
   return (
     <View style={styles.itemContainer}>
       <View style={styles.itemImageContainer}>
-        <Image style={styles.itemImageView} source={{ uri: imageUrl }} />
+        {!!imageUrl && (
+          <Image style={styles.itemImageView} source={{ uri: imageUrl }} />
+        )}
       </View>
       <View style={styles.itemTitleContainer}>
         <Text style={styles.itemTitleText} numberOfLines={3}>

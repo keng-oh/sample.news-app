@@ -1,5 +1,5 @@
 // import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   View,
@@ -8,17 +8,34 @@ import {
   Platform,
   StatusBar,
 } from 'react-native';
+import axios from 'axios';
+import Constants from 'expo-constants';
 
 import ListItem from './components/ListItem';
 
-import articles from './dummy/articles.json';
+import dummyArticles from './dummy/articles.json';
 
-export default function App() {
+const URL: string = `http://newsapi.org/v2/top-headlines?country=jp&apiKey=${Constants.manifest.extra.newsApiKey}`;
+
+export default () => {
+  const [articles, setArticles] = useState([]);
+  useEffect(() => {
+    fetchArticles();
+  }, []);
+
+  const fetchArticles = async () => {
+    try {
+      const response = await axios.get(URL);
+      setArticles(response.data.articles);
+    } catch (e) {
+      console.log(e);
+    }
+  };
   return (
     <SafeAreaView style={[styles.container, styles.AndroidSafeArea]}>
       <FlatList
         data={articles}
-        renderItem={({ item }) => (
+        renderItem={({ item }: { item: any }) => (
           <ListItem
             imageUrl={item.urlToImage}
             title={item.title}
@@ -29,7 +46,7 @@ export default function App() {
       />
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   AndroidSafeArea: {
