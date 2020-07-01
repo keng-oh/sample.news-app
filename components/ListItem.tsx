@@ -1,17 +1,18 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 
 const ListItem = ({
   imageUrl,
   title,
   author,
+  onPress,
 }: {
   imageUrl: string;
   title: string;
   author: string;
 }) => {
   return (
-    <View style={styles.itemContainer}>
+    <TouchableOpacity style={styles.itemContainer} onPress={onPress}>
       <View style={styles.itemImageContainer}>
         {!!imageUrl && (
           <Image style={styles.itemImageView} source={{ uri: imageUrl }} />
@@ -23,7 +24,7 @@ const ListItem = ({
         </Text>
         <Text style={styles.itemTitleAuthor}>{author}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
