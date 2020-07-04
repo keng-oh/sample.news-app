@@ -12,25 +12,28 @@ import axios from 'axios';
 import Constants from 'expo-constants';
 
 import ListItem from '../components/ListItem';
-
-import dummyArticles from '../dummy/articles.json';
+import Loading from '../components/Loading';
 
 const URL: string = `http://newsapi.org/v2/top-headlines?country=jp&apiKey=${Constants.manifest.extra.newsApiKey}`;
 
 export default ({ navigation }: { navigation: any }) => {
   const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     fetchArticles();
   }, []);
 
   const fetchArticles = async () => {
+    setLoading(true);
     try {
       const response = await axios.get(URL);
       setArticles(response.data.articles);
     } catch (e) {
       console.log(e);
     }
+    setLoading(false);
   };
+
   return (
     <SafeAreaView style={[styles.container, styles.AndroidSafeArea]}>
       <FlatList
@@ -45,6 +48,7 @@ export default ({ navigation }: { navigation: any }) => {
         )}
         keyExtractor={(item, index) => index.toString()}
       />
+      {loading && <Loading />}
     </SafeAreaView>
   );
 };
