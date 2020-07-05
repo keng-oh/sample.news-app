@@ -2,23 +2,34 @@ import React from 'react';
 import { StyleSheet, SafeAreaView, Text, TouchableOpacity } from 'react-native';
 import { WebView } from 'react-native-webview';
 import { useDispatch, useSelector } from 'react-redux';
-import { addClip, deleteClip } from '../../store/actions/user';
+import { AddClipAction, DeleteClipAction } from '../../store/actions/user';
 import ClipButton from './components/ClipButton';
 import Loading from './components/Loading';
 
-export default ({ route }) => {
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../../types/navigation';
+import { RouteProp } from '@react-navigation/native';
+import { State } from '../../types/state';
+import { User } from '../../types/user';
+
+type Props = {
+  navigation: StackNavigationProp<RootStackParamList, 'Article'>;
+  route: RouteProp<RootStackParamList, 'Article'>;
+};
+
+export default ({ navigation, route }: Props) => {
   const { article } = route.params;
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state: State) => state.user) as User;
   const { clips } = user;
   const isClipped = () => {
     return clips.some((clip) => clip.url === article.url);
   };
   const toggleClip = () => {
     if (isClipped()) {
-      dispatch(deleteClip({ clip: article }));
+      dispatch(DeleteClipAction({ clip: article }));
     } else {
-      dispatch(addClip({ clip: article }));
+      dispatch(AddClipAction({ clip: article }));
     }
   };
 

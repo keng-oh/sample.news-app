@@ -14,9 +14,19 @@ import Constants from 'expo-constants';
 import ListItem from './components/ListItem';
 import Loading from './components/Loading';
 
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RouteProp } from '@react-navigation/native';
+import { RootStackParamList } from '../../types/navigation';
+import { Article } from '../../types/article';
+
 const URL: string = `http://newsapi.org/v2/top-headlines?country=jp&apiKey=${Constants.manifest.extra.newsApiKey}`;
 
-export default ({ navigation }: { navigation: any }) => {
+type Props = {
+  navigation: StackNavigationProp<RootStackParamList, 'Home'>;
+  route: RouteProp<RootStackParamList, 'Home'>;
+};
+
+export default ({ navigation, route }: Props) => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
@@ -38,7 +48,7 @@ export default ({ navigation }: { navigation: any }) => {
     <SafeAreaView style={[styles.container, styles.AndroidSafeArea]}>
       <FlatList
         data={articles}
-        renderItem={({ item }: { item: any }) => (
+        renderItem={({ item }: { item: Article }) => (
           <ListItem
             imageUrl={item.urlToImage}
             title={item.title}

@@ -2,13 +2,18 @@ import React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 
+type Props = {
+  onPress: () => void;
+  enabled: boolean;
+};
+
 const styles = StyleSheet.create({
   container: {
     padding: 5,
   },
 });
 
-const ClipButton = ({ onPress, enabled }) => {
+const ClipButton = ({ onPress, enabled }: Props) => {
   const name = enabled ? 'bookmark' : 'bookmark-o';
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
