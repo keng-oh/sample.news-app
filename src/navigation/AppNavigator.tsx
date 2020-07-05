@@ -4,9 +4,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome } from '@expo/vector-icons';
 
-import HomeScreen from '../screens/HomeScreen';
-import ArticleScreen from '../screens/ArticleScreen';
-import ClipScreen from '../screens/ClipScreen';
+import HomeScreen from './screens/HomeScreen';
+import ArticleScreen from './screens/ArticleScreen';
+import ClipScreen from './screens/ClipScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();

@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { StyleSheet, SafeAreaView, Platform, FlatList } from 'react-native';
-import ListItem from '../components/ListItem';
+import ListItem from './components/ListItem';
 
 export default ({ navigation }: { navigation: any }) => {
   const user = useSelector((state) => state.user);

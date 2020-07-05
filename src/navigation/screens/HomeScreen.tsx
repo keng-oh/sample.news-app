@@ -11,8 +11,8 @@ import {
 import axios from 'axios';
 import Constants from 'expo-constants';
 
-import ListItem from '../components/ListItem';
-import Loading from '../components/Loading';
+import ListItem from './components/ListItem';
+import Loading from './components/Loading';
 
 const URL: string = `http://newsapi.org/v2/top-headlines?country=jp&apiKey=${Constants.manifest.extra.newsApiKey}`;
 

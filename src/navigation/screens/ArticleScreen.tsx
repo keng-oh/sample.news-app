@@ -2,9 +2,9 @@ import React from 'react';
 import { StyleSheet, SafeAreaView, Text, TouchableOpacity } from 'react-native';
 import { WebView } from 'react-native-webview';
 import { useDispatch, useSelector } from 'react-redux';
-import { addClip, deleteClip } from '../store/actions/user';
-import ClipButton from '../components/ClipButton';
-import Loading from '../components/Loading';
+import { addClip, deleteClip } from '../../store/actions/user';
+import ClipButton from './components/ClipButton';
+import Loading from './components/Loading';
 
 export default ({ route }) => {
   const { article } = route.params;

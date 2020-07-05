@@ -1,7 +1,7 @@
 import React from 'react';
-import AppNavigator from './navigation/AppNavigator';
+import AppNavigator from './src/navigation/AppNavigator';
 import { Provider } from 'react-redux';
-import store, { persistor } from './store';
+import store, { persistor } from './src/store';
 import { PersistGate } from 'redux-persist/integration/react';
 
 export default () => {
